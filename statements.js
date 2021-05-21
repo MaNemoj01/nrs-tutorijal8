@@ -8,4 +8,6 @@ const updateGrad = (id, population) => `UPDATE grad SET BROJ_STANOVNIKA = ${popu
 
 const deleteGrad = (id) => `DELETE FROM grad WHERE ID = ${id};`
 
-module.exports = { getAll, getGrad, createGrad, updateGrad, deleteGrad }
+const deleteLondon = `DELETE FROM grad WHERE NAZIV = "London";`
+
+module.exports = { getAll, getGrad, createGrad, updateGrad, deleteGrad, deleteLondon }

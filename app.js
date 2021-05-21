@@ -38,7 +38,7 @@ app.get('/gradovi', (req, res) => {
     })
   } catch (error) {
     console.log("ERROR: ", error);
-    return res.status(400).send({messaage: "Error has occured. Plese try again."})
+    return res.status(400).send({message: "Error has occured. Plese try again."})
   }
 });
 
@@ -58,7 +58,7 @@ app.get('/gradovi/:id', (req, res) => {
     })
   } catch (error) {
     console.log("ERROR: ", error);
-    return res.status(400).send({messaage: "Error has occured. Plese try again."})
+    return res.status(400).send({message: "Error has occured. Plese try again."})
   }
 });
 
@@ -72,14 +72,14 @@ app.post('/grad', (req, res) => {
         if(err) {
           throw err;
         }
-        return res.status(200).send({messsage: "Successfully created city."})
+        return res.status(200).send({message: "Successfully created city."})
       })
     } catch (error) {
       console.log("ERROR: ", error);
-      return res.status(400).send({messaage: "Error has occured. Plese try again."})
+      return res.status(400).send({message: "Error has occured. Plese try again."})
     }
   } else {
-    return res.status(400).send({messaage: "Invalid data."});
+    return res.status(400).send({message: "Invalid data."});
   }
 });
 
@@ -92,14 +92,14 @@ app.put('/gradovi/:id', (req, res) => {
         if(err) {
           throw err;
         }
-        return res.status(200).send({messsage: "Successfully updated city."})
+        return res.status(200).send({message: "Successfully updated city."})
       })
     } catch (error) {
       console.log("ERROR: ", error);
-      return res.status(400).send({messaage: "Error has occured. Plese try again."})
+      return res.status(400).send({message: "Error has occured. Plese try again."})
     }
   } else {
-    return res.status(400).send({messaage: "Invalid data."});
+    return res.status(400).send({message: "Invalid data."});
   }
 });
 
@@ -110,11 +110,11 @@ app.delete('/gradovi/:id', (req, res) => {
       if(err) {
         throw err;
       }
-      return res.status(200).send({messsage: "Successfully deleted city."})
+      return res.status(200).send({message: "Successfully deleted city."})
     })
   } catch (error) {
     console.log("ERROR: ", error);
-    return res.status(400).send({messaage: "Error has occured. Plese try again."})
+    return res.status(400).send({message: "Error has occured. Plese try again."})
   }
 });
 
