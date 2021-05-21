@@ -70,7 +70,7 @@ describe('TESTS', function() {
   });
 
   describe('PUT METHOD', function() {
-    describe('TEST UPDATE CITY', function() {
+    describe('TEST UPDATE CITY BY ID', function() {
       it('should successufully update city London', async function() {
         const index = gradovi.findIndex((el) => el.NAZIV == "London");
         const response = await axios.put(buildUrl(gradovi[index].ID), { broj_stanovnika: 2000});
@@ -82,7 +82,7 @@ describe('TESTS', function() {
   });
 
   describe('DELETE METHOD', function() {
-    describe('TEST DELETE CITY', function() {
+    describe('TEST DELETE CITY BY ID', function() {
       it('should successufully delete city London', async function() {
         const index = gradovi.findIndex((el) => el.NAZIV == "London");
         const response = await axios.delete(buildUrl(gradovi[index].ID));
