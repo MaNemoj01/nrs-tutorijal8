@@ -6,4 +6,6 @@ const createGrad = (name, population) => `INSERT INTO grad (NAZIV, BROJ_STANOVNI
 
 const updateGrad = (id, population) => `UPDATE grad SET BROJ_STANOVNIKA = ${population} WHERE ID = ${id};`
 
-module.exports = { getAll, getGrad, createGrad, updateGrad }
+const deleteGrad = (id) => `DELETE FROM grad WHERE ID = ${id};`
+
+module.exports = { getAll, getGrad, createGrad, updateGrad, deleteGrad }

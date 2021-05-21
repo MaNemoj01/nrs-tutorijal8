@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const cors = require('cors');
-const { getAll, getGrad, createGrad, updateGrad } = require('./statements');
+const { getAll, getGrad, createGrad, updateGrad, deleteGrad } = require('./statements');
 const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
@@ -100,6 +100,21 @@ app.put('/gradovi/:id', (req, res) => {
     }
   } else {
     return res.status(400).send({messaage: "Invalid data."});
+  }
+});
+
+app.delete('/gradovi/:id', (req, res) => {
+  const { id } = req.params;
+  try{
+    db.all(deleteGrad(id), [], (err, rows) => {
+      if(err) {
+        throw err;
+      }
+      return res.status(200).send({messsage: "Successfully deleted city."})
+    })
+  } catch (error) {
+    console.log("ERROR: ", error);
+    return res.status(400).send({messaage: "Error has occured. Plese try again."})
   }
 });
 
