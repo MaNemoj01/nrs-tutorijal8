@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const cors = require('cors');
-const { getAll, getGrad } = require('./statements');
+const { getAll, getGrad, createGrad, updateGrad } = require('./statements');
 const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
@@ -62,6 +62,46 @@ app.get('/gradovi/:id', (req, res) => {
   }
 });
 
+app.post('/grad', (req, res) => {
+  const { naziv, broj_stanovnika } = req.body;
+  if(typeof naziv === 'string' && naziv.trim(" ") !== "" && 
+    typeof broj_stanovnika === 'number' && broj_stanovnika > 0
+  ) {
+    try{
+      db.all(createGrad(naziv, broj_stanovnika), [], (err, rows) => {
+        if(err) {
+          throw err;
+        }
+        return res.status(200).send({messsage: "Successfully created city."})
+      })
+    } catch (error) {
+      console.log("ERROR: ", error);
+      return res.status(400).send({messaage: "Error has occured. Plese try again."})
+    }
+  } else {
+    return res.status(400).send({messaage: "Invalid data."});
+  }
+});
+
+app.put('/gradovi/:id', (req, res) => {
+  const { id } = req.params;
+  const { broj_stanovnika } = req.body;
+  if(typeof broj_stanovnika === 'number' && broj_stanovnika > 0) {
+    try{
+      db.all(updateGrad(id, broj_stanovnika), [], (err, rows) => {
+        if(err) {
+          throw err;
+        }
+        return res.status(200).send({messsage: "Successfully updated city."})
+      })
+    } catch (error) {
+      console.log("ERROR: ", error);
+      return res.status(400).send({messaage: "Error has occured. Plese try again."})
+    }
+  } else {
+    return res.status(400).send({messaage: "Invalid data."});
+  }
+});
 
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);
